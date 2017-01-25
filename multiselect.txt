@@ -1,0 +1,464 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Atos | ACAT </title>
+
+    <!-- Bootstrap -->
+ <!-- button css -->
+    <link href="<c:url value="/resource/css/button.css"/>" rel="stylesheet" type="text/css" />
+     <link href="<c:url value="/resource/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" />
+  
+    <!-- Font Awesome -->
+    <link href="<c:url value="/resource/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" />
+    <link href="<c:url value="/resource/css/font-awesome.css"/>" rel="stylesheet" type="text/css" />
+ <link href="<c:url value="/resource/js1/bootstrap-multiselect.css"/>" rel="stylesheet" type="text/css" />
+    <!-- NProgress -->
+    <link href="<c:url value="/resource/css/nprogress.css"/>" rel="stylesheet" type="text/css" />
+ 
+    <!-- Custom Theme Style -->
+    <link href="<c:url value="/resource/css/custom.min.css"/>" rel="stylesheet" type="text/css" />
+    
+    <script>
+function fun()
+{
+	 var x=document.getElementById("app_driver");
+	// x.disabled="false";
+	 var appname=document.getElementById("application_name");
+	 var driver=document.getElementById("driver");
+	// appname.readOnly = true;
+	   // var v=x.text;
+	    var y=document.getElementById("app_stage");
+	   
+	    //alert(y.text);
+	   // alert(y.options[y.selectedIndex].text);
+	    var d=y.options[y.selectedIndex].text;
+	  
+	    if(d=="Approaching End of Life" || d=="End of Life"){ 
+	    	
+	    	x.options[0].selected = 'selected';
+	    	x.options[3].disabled=true;	
+	    	}
+	    else{
+	    	x.options[3].disabled=false;	
+	    }
+	    
+	    if(d=="Supported/Managed" || d=="New Application"){ 
+	    	x.options[3].selected = 'selected';
+	    	/*x.options[0].disabled=true;	
+	    	x.options[1].disabled=true;	
+	    	x.options[2].disabled=true;	*/
+	    	x.disabled=true;
+	    }
+	    else{
+	    	x.disabled=false;
+	    	/*x.options[2].disabled=false;
+	    	x.options[0].disabled=false;	
+	    	x.options[1].disabled=false;	*/
+	    }
+	    
+	   
+	    driver.value=x.value;
+	   
+	}
+	
+	
+	function appCategory(){
+		
+		  var category=document.getElementById("app_category");
+		  var platform=document.getElementById("app_platform");
+		  var platformText=document.getElementById("platform");
+		  var TypeText=document.getElementById("type");
+			var type=document.getElementById("app_type");	
+			
+		  var catname=category.options[category.selectedIndex].text;
+	//	alert(catname);
+		
+		
+		if(catname=="Blog" || catname=="E-Commerce" || catname=="Social Networking" ){
+			type.options[2].selected='selected';
+			type.disabled=true;	
+		}
+		else{
+			type.disabled=false;
+		}
+		
+		if(catname=="Microsoft Exchange" || catname=="Office Suites"){
+		//	$('#app_platform').empty();
+		platform.empty();
+			platform.options[6].selected='selected';
+			//platform.disabled=true;
+			
+			 $('#app_platform').multiselect('select', ['']);
+                      
+         $('#app_platform').multiselect('disable');	
+           
+
+   
+
+
+                  
+
+			//platform.
+
+		} 
+		else if(catname=="Microsoft Sharepoint"){
+		//	$('#app_platform').empty();
+			platform.options[7].selected='selected';
+			type.options[2].selected='selected';
+			//platform.disabled=true;
+		
+				 $('#app_platform').multiselect('select', ['']);
+			   $('#app_platform').multiselect('disable');	
+		}
+		else{
+			//platform.disabled=false;
+			   $('#app_platform').multiselect('enable');	
+		}
+		
+		platformText.value=platform.value;
+		TypeText.value=type.value;
+	}
+	
+	function final(){
+		
+		  var platformText=document.getElementById("platform");
+		  var TypeText=document.getElementById("type");
+		  var driver=document.getElementById("driver");
+		  
+		  platformText.value=document.getElementById("app_platform").value;
+		  TypeText.value=document.getElementById("app_type").value;	
+		  driver.value=document.getElementById("app_driver").value;
+		 
+		  var category=document.getElementById("app_category").value;
+		  var platform=document.getElementById("app_platform").value;
+			var type=document.getElementById("app_type").value;	
+			 var appdriver=document.getElementById("app_driver").value;
+			  var db=document.getElementById("app_database").value;
+			  var stage=document.getElementById("app_stage").value;
+			  var data=document.getElementById("data_confidentiality").value;
+			  var workload=document.getElementById("workload_variations").value;
+		  
+			  
+			  document.getElementById("check").value="save";
+			  
+			  if(category=="Blank" || platform=="Blank" || type=="Blank" || appdriver=="Blank" || db=="Blank" || stage=="Blank" || data=="Blank" || workload=="Blank")
+				  {
+				  alert("Please select all the options.");
+				  return false;
+				
+				  }
+			  
+		  return true;
+		
+	}
+function app12(){
+	 var platformText=$('#app_platform').val();
+	 alert(platformText)
+	//alert( $('#app_platform').val());
+}
+	function final1(){
+		
+		  var platformText=document.getElementById("platform");
+		  var TypeText=document.getElementById("type");
+		  var driver=document.getElementById("driver");
+		  
+		  platformText.value=document.getElementById("app_platform").value;
+		  TypeText.value=document.getElementById("app_type").value;	
+		  driver.value=document.getElementById("app_driver").value;
+		 
+		  var category=document.getElementById("app_category").value;
+		  var platform=document.getElementById("app_platform").value;
+			var type=document.getElementById("app_type").value;	
+			 var appdriver=document.getElementById("app_driver").value;
+			  var db=document.getElementById("app_database").value;
+			  var stage=document.getElementById("app_stage").value;
+			  var data=document.getElementById("data_confidentiality").value;
+			  var workload=document.getElementById("workload_variations").value;
+		  
+			  
+			  document.getElementById("check").value="save and go";
+			  
+			  if(category=="Blank" || platform=="Blank" || type=="Blank" || appdriver=="Blank" || db=="Blank" || stage=="Blank" || data=="Blank" || workload=="Blank")
+				  {
+				  alert("Please select all the options.");
+				  return false;
+				
+				  }
+			  
+		  return true;
+		
+	}
+
+
+</script>
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ACAT</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+            <br />
+
+            <!-- sidebar menu -->
+                <%@include file="sidebar.jsp" %>
+            <!--#include file="common/sidebar.shtml" -->
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <!--#include file="common/topnavigation.shtml" -->
+            <%@include file="topnavigation.jsp" %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Application Attributes</h3>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Attributes </h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <form class="form-horizontal form-label-left" novalidate action="AddAttribute" method="post">
+                  
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Application Name</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        
+                          <input id="appname" value=<c:out value="${appname}"/> class="form-control col-md-7 col-xs-12" name="appname" placeholder="Application Name" type="hidden" readonly > 
+                         <div style="font-size:18px;">
+                        <b><c:out value="${appname}"/></b> 
+                         </div>
+                        </div>
+                        
+                          <input type="hidden" id="application_name"  value=<c:out value="${appid}"/> name="application_name"/>
+                          <input type="hidden" id="clientid"  value=<c:out value="${clientid}"/> name="clientid"/>
+                      </div>
+                        <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Application Category</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="app_category" onchange="appCategory()" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="app_category" placeholder="Application category" list="categories">
+						 <option value="Blank">Select an option</option>
+						  <c:forEach items="${att1List}" var="cat">
+                          <option value="${cat.valueid}">${cat.valuename}</option>
+                         </c:forEach>
+                         </select>
+                        </div>
+                      </div>
+					  <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stage">Stage</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="app_stage" onchange="fun()" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="app_stage" placeholder="Application stage" list="stages">
+						 <option value="Blank">Select an option</option>
+						 <c:forEach items="${att2List}" var="cat">
+                        <option value="${cat.valueid}">${cat.valuename}</option>
+                       </c:forEach>
+                       </select>
+                        </div>
+                        <input type="hidden" id="stage" value="app_stage" name="stage"/>
+                      </div>
+					  <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="driver">End of life driver</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="app_driver" name="app_driver" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"  placeholder="End of life driver" list="drivers">
+						 <option value="Blank">Select an option</option>
+						 <c:forEach items="${att3List}" var="cat">
+  <option value="${cat.valueid}">${cat.valuename}</option>
+</c:forEach>
+</select>
+                        </div>
+                         <input type="hidden" id="driver"  name="driver"/>
+                      </div>
+					  <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="platform">Platform</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="app_platform"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="app_platform" placeholder="Platform" list="platforms"  multiple="multiple" >
+						   <option value="Blank">Select an option</option>
+						  <c:forEach items="${att4List}" var="cat">
+  <option value="${cat.valueid}">${cat.valuename}</option>
+</c:forEach>
+</select>
+                        </div>
+                         <input type="hidden" id="platform" value="app_stage" name="platform"/>
+                      </div>
+					  <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="database">Database</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="app_database" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="app_database" placeholder="Database" list="databases">
+						   <option value="Blank">Select an option</option>
+						  <c:forEach items="${att5List}" var="cat">
+  <option value="${cat.valueid}">${cat.valuename}</option>
+</c:forEach>
+</select>
+                        </div>
+                      </div>
+					  <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">Type</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="app_type" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="app_type" placeholder="Type" list="types">
+						 <option value="Blank">Select an option</option>
+						 <c:forEach items="${att6List}" var="cat">
+  <option value="${cat.valueid}">${cat.valuename}</option>
+</c:forEach>
+</select>
+                        </div>
+                         <input type="hidden" id="type" value="app_stage" name="type"/>
+                      </div>
+					   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="data">Data Confidentiality</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="data_confidentiality" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="data_confidentiality" placeholder="Data Confidentiality" list="data_confidentiality_levels">
+						  <option value="Blank">Select an option</option> 
+<c:forEach items="${att7List}" var="cat">
+  <option value="${cat.valueid}">${cat.valuename}</option>
+</c:forEach>
+</select>
+                        </div>
+                      </div>
+					   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="workload">Workload Variations</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="workload_variations" onchange="final()" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="workload_variations" placeholder="Workload Variations" list="workload_variation_levels">
+						  <option value="Blank">Select an option</option> 
+<c:forEach items="${att8List}" var="cat">
+  <option value="${cat.valueid}">${cat.valuename}</option>
+</c:forEach>
+</select>
+                        </div>
+                      </div>
+					  
+					  <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3"><input type="hidden" id="check" name="check" />
+                          <input type="submit"  value="Save" class="btn btn-success" onclick="return app12()"/>
+                            <input type="submit"  value="Save And Next" class="btn btn-success" onclick="return final1()"/>
+                      </div>
+					</div>
+					
+					
+					</form>
+					
+					<div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                        
+                          
+                          
+                        	  
+                          <form    action="DisplayApplicationWindow">
+                          <button type="submit"  class="btn btn-primary" style="margin-top:-50px; margin-left:193px;">Cancel</button>
+                        </form>
+                        
+                          
+                          
+                         
+					
+                  </div>
+                </div>
+					
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+            <%@include file="footer.jsp" %>
+        <!--#include file="common/footer.shtml" -->
+        <!-- /footer content -->
+      </div>
+    </div>
+
+   <!-- jQuery -->
+    <script src="<c:url value="/resource/js1/jquery.min.js"/>"></script>
+    <!-- Bootstrap -->
+    <script src="<c:url value="/resource/js1/bootstrap.min.js"/>"></script>
+       <script src="<c:url value="/resource/js1/bootstrap-multiselect.js"/>"></script>
+       
+    <!-- FastClick -->
+    <script src="<c:url value="/resource/js1/fastclick.js"/>"></script>
+ 
+    <!-- NProgress -->
+    <script src="<c:url value="/resource/js1/nprogress.js"/>"></script>
+    <!-- validator -->
+
+<script src="<c:url value="/resource/js1/validator.js"/>"></script>
+    <!-- Custom Theme Scripts -->
+
+ <script src="<c:url value="/resource/js/custom.min.js"/>"></script>
+
+
+    <!-- validator -->
+    <script>
+      // initialize the validator function
+      validator.message.date = 'not a real date';
+
+      // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+      $('form')
+        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+        .on('change', 'select.required', validator.checkField)
+        .on('keypress', 'input[required][pattern]', validator.keypress);
+
+      $('.multi.required').on('keyup blur', 'input', function() {
+        validator.checkField.apply($(this).siblings().last()[0]);
+      });
+
+      $('form').submit(function(e) {
+        e.preventDefault();
+        var submit = true;
+
+        // evaluate the form using generic validaing
+        if (!validator.checkAll($(this))) {
+          submit = false;
+        }
+
+        if (submit)
+          this.submit();
+
+        return false;
+      });
+    </script>
+    <!-- /validator -->
+    <script type="text/javascript">   
+      $(document).ready(function() {
+          $('#app_platform').multiselect();
+          //$('#app_platform').multiselect('disable');	
+      });
+      
+         </script>
+  </body>
+</html>
